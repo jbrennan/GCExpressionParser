@@ -41,21 +41,21 @@ static struct init s_MathFunctions[]=
 };
 
 
-+ (double)			evaluate:(NSString*) expression
++ (double)evaluate:(NSString *)expression
 {
 	return [[self parser] evaluate:expression];
 }
 
 
-+ (GCMathParser*)	parser
++ (GCMathParser *)parser
 {
 	return [[GCMathParser alloc] init];
 }
 
 
-- (id)				init
+- (id)init
 {
-	if ((self = [super init]) != nil )
+	if ((self = [super init]) != nil)
 	{
 		int 	i;
 		symbol 	*ptr;
@@ -80,7 +80,7 @@ static struct init s_MathFunctions[]=
 }
 
 
-- (void)			dealloc
+- (void)dealloc
 {
 	// free symbol table
 	
@@ -88,23 +88,23 @@ static struct init s_MathFunctions[]=
 	
 	s = _st;
 	
-	while( s )
+	while (s)
 	{
 		ns = s->next;
-		free( s->name );
-		free( s );
+		free(s->name);
+		free(s);
 		s = ns;
 	}
 	
 }
 
 
-- (double)			evaluate:(NSString*) expression
+- (double)evaluate:(NSString *)expression
 {
 	_expr = expression;
 	_result = 0.0;
 	
-	yyparse( (__bridge void *)(self) );
+	yyparse((__bridge void *)(self));
 
 	// return the result...
 
@@ -112,19 +112,19 @@ static struct init s_MathFunctions[]=
 }
 
 
-- (NSString*)		expression
+- (NSString *)expression
 {
 	return _expr;
 }
 
 
-- (const char*)		expressionCString
+- (const char*)expressionCString
 {
 	return [[self expression] cString];
 }
 
 
-- (void)			setSymbolValue:(double) value forKey:(NSString*) key
+- (void)setSymbolValue:(double)value forKey:(NSString *)key
 {
 	symbol* p;
 	
@@ -138,11 +138,11 @@ static struct init s_MathFunctions[]=
 }
 
 
-- (double)			symbolValueForKey:(NSString*) key
+- (double)symbolValueForKey:(NSString *)key
 {
-	symbol*		s = [self getSymbol:key];
+	symbol*	s = [self getSymbol:key];
 	
-	if ( s )
+	if (s)
 		return s->value.var;
 	else
 		return 0.0;
@@ -151,13 +151,13 @@ static struct init s_MathFunctions[]=
 
 // private methods called internally:
 
-- (symbol*)			getSymbol:(NSString*) key
+- (symbol*)getSymbol:(NSString *)key
 {
 	return [self getSymbolForCString:[key cString]];
 }
 
 
-- (symbol*)			getSymbolForCString:(const char*) name
+- (symbol*)getSymbolForCString:(const char*)name
 {
 	symbol *ptr;
   	
@@ -171,7 +171,7 @@ static struct init s_MathFunctions[]=
 }
 
 
-- (symbol*)			initSymbol:(const char*) name ofType:(int) type
+- (symbol*)initSymbol:(const char*)name ofType:(int)type
 {
 	symbol*	ptr = (symbol*) malloc ( sizeof( symbol ));
   	
@@ -187,7 +187,7 @@ static struct init s_MathFunctions[]=
 }
 
 
-- (void)			setResult:(double) result
+- (void)setResult:(double)result
 {
 	_result = result;
 }
@@ -201,7 +201,7 @@ static struct init s_MathFunctions[]=
 
 @implementation NSString (ExpressionParser)
 
-- (double)			evaluateMath
+- (double)evaluateMath
 {
 	return [GCMathParser evaluate:self];
 }
