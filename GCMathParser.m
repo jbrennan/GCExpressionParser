@@ -49,7 +49,7 @@ static struct init s_MathFunctions[]=
 
 + (GCMathParser*)	parser
 {
-	return [[[GCMathParser alloc] init] autorelease];
+	return [[GCMathParser alloc] init];
 }
 
 
@@ -96,19 +96,15 @@ static struct init s_MathFunctions[]=
 		s = ns;
 	}
 	
-	[_expr release];
-	[super dealloc];
 }
 
 
 - (double)			evaluate:(NSString*) expression
 {
-	[expression retain];
-	[_expr release];
 	_expr = expression;
 	_result = 0.0;
 	
-	yyparse( self );
+	yyparse( (__bridge void *)(self) );
 
 	// return the result...
 

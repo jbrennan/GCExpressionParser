@@ -25,7 +25,6 @@
 	}
 	else if ([sender intValue] == 0 && _parser != nil )
 	{
-		[_parser release];
 		_parser = nil;
 	}
 }
