@@ -9,7 +9,7 @@
 *
 *
 *
-*			© 2000, Graham Cox
+*			ï¿½ 2000, Graham Cox
 *
 *
 *
@@ -853,8 +853,8 @@ void yyerror ( char* errStr )
 	//FailOSErr( kExpParseErr );
 	
 #ifdef __COCOA_IMPLEMENTATION__
-	[NSException raise:@"Error in expression" format:@"error = %s", errStr];
-#endif	
+//	[NSException raise:@"Error in expression" format:@"error = %s", errStr];
+#endif
 }
 
 
