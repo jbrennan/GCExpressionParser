@@ -853,7 +853,7 @@ void yyerror ( char* errStr )
 	//FailOSErr( kExpParseErr );
 	
 #ifdef __COCOA_IMPLEMENTATION__
-//	[NSException raise:@"Error in expression" format:@"error = %s", errStr];
+	[NSException raise:@"Error in expression" format:@"error = %s", errStr];
 #endif
 }
 
