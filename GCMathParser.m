@@ -103,6 +103,7 @@ static struct init s_MathFunctions[]=
 {
 	_expr = expression;
 	_result = 0.0;
+	if (![expression length]) return 0.0;
 	
 	yyparse((__bridge void *)(self));
 
