@@ -120,7 +120,7 @@ static struct init s_MathFunctions[]=
 
 - (const char*)expressionCString
 {
-	return [[self expression] cString];
+	return [[self expression] UTF8String];
 }
 
 
@@ -131,7 +131,7 @@ static struct init s_MathFunctions[]=
 	p = [self getSymbol:key];
 	
 	if ( p == NULL )
-		p = [self initSymbol:[key cString] ofType:VAR];
+		p = [self initSymbol:[key UTF8String] ofType:VAR];
 
 	if ( p )
 		p->value.var = value;
@@ -153,7 +153,7 @@ static struct init s_MathFunctions[]=
 
 - (symbol*)getSymbol:(NSString *)key
 {
-	return [self getSymbolForCString:[key cString]];
+	return [self getSymbolForCString:[key UTF8String]];
 }
 
 
